@@ -6,36 +6,40 @@ using UnityEngine.UI;
 public class CharacterControl : MonoBehaviour {
 
 	public float speed = 0.01f;
+	int coins = 0;
+	int hearts = 0;
+	int stars = 0;
+	public Text contadorCoins;
+	public Text contadorHearts;
+	public Text contadorStars;
 
 
-	void OnCollisionEnter2D (Collision2D col)
-	{
-		if (col.collider.gameObject.tag == "Coins") {
-			ScoreScript.scoreValue += 1;
-			Destroy (col.collider.gameObject);
+
+	void OnCollisionEnter2D (Collision2D coll) {
+		if (coll.collider.gameObject.tag == "Coins") {
+			Destroy (coll.collider.gameObject);
+			coins = coins + 1;
+			contadorCoins.text = coins.ToString ();
+
+		}
+
+		if (coll.collider.gameObject.tag == "Hearts") {
+			Destroy (coll.collider.gameObject);
+			hearts = hearts + 1;
+			contadorHearts.text = hearts.ToString ();
+
 
 
 		}
 
-		if (col.collider.gameObject.tag == "Hearts") {
-			Destroy (col.collider.gameObject);
+		if (coll.collider.gameObject.tag == "Stars") {
+			Destroy (coll.collider.gameObject);
+			stars = stars + 1;
+			contadorStars.text = stars.ToString ();
 
 		}
-
-		if (col.collider.gameObject.tag == "Stars") {
-			Destroy (col.collider.gameObject);
-
-		}
-			
 	}
 
-
-	public void ClicEnElBoton() {
-
-			// Le agregp una fuerza hacia arriba 
-			this.gameObject.GetComponent<Rigidbody2D> ().AddForce (Vector2.up * 5, ForceMode2D.Impulse);
-
-	}
 
 	// Use this for initialization
 	void Start () {
@@ -65,8 +69,8 @@ public class CharacterControl : MonoBehaviour {
 		//Si la tecla Barra Espaciadora es presionada
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			
-			// Le agregp una fuerza hacia arriba 
-			this.gameObject.GetComponent<Rigidbody2D> ().AddForce (Vector2.up * 8, ForceMode2D.Impulse);
+			// Le agrego una fuerza hacia arriba 
+			this.gameObject.GetComponent<Rigidbody2D> ().AddForce (Vector2.up * 6, ForceMode2D.Impulse);
 		}
 
 
